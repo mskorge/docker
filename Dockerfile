@@ -44,6 +44,7 @@ RUN git clone --branch $tag https://github.com/foosel/OctoPrint.git /opt/octopri
 	&& ./venv/bin/python setup.py install
 
 #Add plugins
+USER root
 RUN cd /opt/octoprint \
 	&& pip install psycopg2 \
 	&& pip install "https://github.com/malnvenshorn/OctoPrint-FilamentManager/archive/master.zip" \
