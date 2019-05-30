@@ -41,11 +41,8 @@ RUN mkdir /home/octoprint/.octoprint
 #Install Octoprint
 RUN git clone --branch $tag https://github.com/foosel/OctoPrint.git /opt/octoprint \
   && virtualenv venv \
-	&& ./venv/bin/python setup.py install
-
-#Add plugins
-USER octoprint
-RUN virtualenv /opt/octoprint/venv \
+	&& ./venv/bin/python setup.py install \
+	#Add plugins
 	&& pip install psycopg2 \
 	&& pip install "https://github.com/malnvenshorn/OctoPrint-FilamentManager/archive/master.zip" \
 	&& pip install "https://github.com/malnvenshorn/OctoPrint-CostEstimation/archive/master.zip" \
