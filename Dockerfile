@@ -43,10 +43,11 @@ RUN git clone --branch $tag https://github.com/foosel/OctoPrint.git /opt/octopri
   && virtualenv venv \
 	&& ./venv/bin/python setup.py install \
 	#Add plugins
-	&& pip install psycopg2 \
 	&& pip install "https://github.com/malnvenshorn/OctoPrint-FilamentManager/archive/master.zip" \
 	&& pip install "https://github.com/malnvenshorn/OctoPrint-CostEstimation/archive/master.zip" \
 	&& pip install "https://github.com/malnvenshorn/OctoPrint-WebcamTab/archive/master.zip"
+USER root
+RUN pip install psycopg2
 
 VOLUME /home/octoprint/.octoprint
 
