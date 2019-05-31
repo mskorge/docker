@@ -41,13 +41,13 @@ RUN mkdir /home/octoprint/.octoprint
 #Install Octoprint
 RUN git clone --branch $tag https://github.com/foosel/OctoPrint.git /opt/octoprint \
   && virtualenv venv \
-	&& ./venv/bin/python setup.py install \
-	#Add plugins
-	&& pip install "https://github.com/malnvenshorn/OctoPrint-FilamentManager/archive/master.zip" \
-	&& pip install "https://github.com/malnvenshorn/OctoPrint-CostEstimation/archive/master.zip" \
-	&& pip install "https://github.com/malnvenshorn/OctoPrint-WebcamTab/archive/master.zip"
-USER root
-RUN pip install psycopg2
+	&& ./venv/bin/python setup.py install
+#Add plugins
+RUN virtualenv /opt/octoprint/venv \
+&& /opt/octoprint/venv/bin/pip install "https://github.com/malnvenshorn/OctoPrint-FilamentManager/archive/master.zip" \
+&& /opt/octoprint/venv/bin/pip install "https://github.com/malnvenshorn/OctoPrint-CostEstimation/archive/master.zip" \
+&& /opt/octoprint/venv/bin/pip install "https://github.com/malnvenshorn/OctoPrint-WebcamTab/archive/master.zip" \
+&& /opt/octoprint/venv/bin/pip install psycopg2
 
 VOLUME /home/octoprint/.octoprint
 
